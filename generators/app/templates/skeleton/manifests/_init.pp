@@ -1,0 +1,24 @@
+# Class: <%= metadata['name'] %>
+# ===========================
+#
+# Full description of class <%= metadata['name'] %> here.
+#
+# Parameters
+# ----------
+#
+# * `sample parameter`
+#   Explanation of what this parameter affects and what it defaults to.
+#   e.g. "Specify one or more upstream ntp servers as an array."
+#
+class <%= metadata['name'] %> (
+  $package_name = $::<%= metadata['name'] %>::params::package_name,
+  $service_name = $::<%= metadata['name'] %>::params::service_name,
+) inherits ::<%= metadata['name'] %>::params {
+
+  # validate parameters here
+
+  class { '::<%= metadata['name'] %>::install': } ->
+  class { '::<%= metadata['name'] %>::config': } ~>
+  class { '::<%= metadata['name'] %>::service': } ->
+  Class['::<%= metadata['name'] %>']
+}
