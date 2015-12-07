@@ -14,8 +14,10 @@ RSpec.configure do |c|
   # Configure all nodes in nodeset
   c.before :suite do
     # Install module and dependencies
-    puppet_module_install(:source => proj_root, :module_name => '<%= metadata['name'] %>')
+    #puppet_module_install(:source => proj_root, :module_name => '<%= metadata['name'] %>')
+
     hosts.each do |host|
+      scp_to host, proj_root, '/etc/puppet/modules/.'
       on host, puppet('module', 'install', 'puppetlabs-stdlib'), :acceptable_exit_codes => [0, 1]
     end
   end
