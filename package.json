@@ -39,5 +39,5 @@
     "prepublish": "gulp prepublish",
     "test": "gulp"
   },
-  "private": true
+  "private": false
 }
