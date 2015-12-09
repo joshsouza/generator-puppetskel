@@ -15,6 +15,7 @@
   "keywords": [
     "yeoman-generator"
   ],
+  "license": "ISC",
   "dependencies": {
     "yeoman-generator": "^0.21.1",
     "chalk": "^1.0.0",
@@ -30,7 +31,10 @@
     "gulp-plumber": "^1.0.0",
     "gulp-nsp": "^2.1.0"
   },
-  "repository": "joshsouza/generator-puppetskel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshsouza/generator-puppetskel"
+  },
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
