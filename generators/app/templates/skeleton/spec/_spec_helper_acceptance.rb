@@ -1,8 +1,16 @@
 require 'beaker-rspec/spec_helper'
 require 'beaker-rspec/helpers/serverspec'
-require 'beaker/puppet_install_helper'
+require 'beaker-rspec/spec_helper'
+require 'beaker-rspec/helpers/serverspec'
+require 'winrm'
+# require 'beaker/puppet_install_helper'
 
-run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
+# run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
+
+version = ENV['PUPPET_GEM_VERSION'] || '3.8.3'
+hosts.each do |host|
+  install_puppet(:version => version)
+end
 
 RSpec.configure do |c|
   # Project root
@@ -17,7 +25,7 @@ RSpec.configure do |c|
     #puppet_module_install(:source => proj_root, :module_name => '<%= metadata['name'] %>')
 
     hosts.each do |host|
-      scp_to host, proj_root, '/etc/puppet/modules/.'
+      puppet_module_install(:source => proj_root, :module_name => '<%= metadata['name'] %>')
       on host, puppet('module', 'install', 'puppetlabs-stdlib'), :acceptable_exit_codes => [0, 1]
     end
   end

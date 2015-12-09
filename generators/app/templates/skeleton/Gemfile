@@ -28,7 +28,9 @@ group :development do
 end
 
 group :system_tests do
-  gem 'beaker'
+  gem 'beaker', :git => 'https://github.com/joshsouza/beaker-windows.git'
   gem 'beaker-rspec'
-  gem 'beaker-puppet_install_helper'
+  # gem 'beaker-puppet_install_helper'
+  gem 'vagrant-wrapper' # May not be needed?
+  gem 'winrm'
 end

@@ -1,0 +1,16 @@
+HOSTS:
+  windows-server-2012r2-amd64:
+    roles:
+      - default
+      - agent
+    platform: windows-server-amd64
+    box: opentable/win-2012r2-standard-amd64-nocm
+    box_url: https://vagrantcloud.com/opentable/boxes/win-2012r2-standard-amd64-nocm
+    hypervisor: vagrant
+    user: vagrant
+    ip: '10.255.33.129'
+    is_cygwin: false
+    vb_gui: true # Disabling this will turn off the gui
+CONFIG:
+  log_level: verbose
+  type: foss

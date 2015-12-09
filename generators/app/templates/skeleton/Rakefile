@@ -58,6 +58,8 @@ RSpec::Core::RakeTask.new(:acceptance, :os) do |t, task_args|
     ENV['BEAKER_set']='ubuntu-1204-x64'
   when "ubuntu14"
     ENV['BEAKER_set']='ubuntu-1404-x64'
+  when "windows2012"
+    ENV['BEAKER_set']='windows-server-2012r2'
   else
     puts "Using the default nodeset"
   end
