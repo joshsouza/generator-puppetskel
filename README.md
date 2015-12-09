@@ -20,6 +20,18 @@ yo puppetskel
 
 This module exists to simplify the creation of a useful puppet module testbed. It utilizes rspec-puppet for unit tests, and Beaker for acceptance tests. (I'm still working on Windows Beaker tests for now). This is to simplify the process of starting from scratch to build a Puppet module, and the testbed was derived from GarethR's [Puppet Module Skeleton](https://github.com/garethr/puppet-module-skeleton). I will add gradual improvements, but I hope this can be useful to anyone starting out with Puppet module creation.
 
+### Testing
+
+Unit tests:
+```
+bundle exec rake test
+```
+
+Acceptance on an OS:
+```
+bundle exec rake acceptance[centos6]
+```
+
 
 ## Getting To Know Yeoman
 
