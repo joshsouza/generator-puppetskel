@@ -25,8 +25,11 @@ RSpec.configure do |c|
     #puppet_module_install(:source => proj_root, :module_name => '<%= metadata['name'] %>')
 
     hosts.each do |host|
-      puppet_module_install(:source => proj_root, :module_name => '<%= metadata['name'] %>')
-      on host, puppet('module', 'install', 'puppetlabs-stdlib'), :acceptable_exit_codes => [0, 1]
+      globroot="#{proj_root}/spec/fixtures/modules"
+      Dir.glob("#{globroot}/*").select {|f| File.directory? f}.each do |f|
+        mod_name=f.split(/[\\\/]/)[-1]
+        puppet_module_install(:source => "#{globroot}/#{mod_name}", :module_name => mod_name )
+      end
     end
   end
 end

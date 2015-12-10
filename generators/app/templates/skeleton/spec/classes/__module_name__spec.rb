@@ -1,8 +1,21 @@
 require 'spec_helper'
 
+supported_oses = {}.merge!(on_supported_os)
+RspecPuppetFacts.meta_supported_os.each do |os|
+  if os['operatingsystem'] =~ /windows/i
+    os['operatingsystemrelease'].each do |release|
+      os_string = "#{os['operatingsystem']}-#{release}"
+      supported_oses[os_string] = {
+        :operatingsystem => 'windows',
+        :kernelversion => '6.3.9600', # Just defaulting to 2012r2
+      }
+    end
+  end
+end
+
 describe '<%= metadata['name'] %>' do
   context 'supported operating systems' do
-    on_supported_os.each do |os, facts|
+    supported_oses.each do |os, facts|
       context "on #{os}" do
         let(:facts) do
           facts

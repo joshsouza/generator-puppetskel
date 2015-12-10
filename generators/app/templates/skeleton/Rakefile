@@ -44,7 +44,9 @@ end
 PuppetSyntax.exclude_paths = exclude_paths
 
 desc 'Run acceptance tests'
-RSpec::Core::RakeTask.new(:acceptance, :os) do |t, task_args|
+RSpec::Core::RakeTask.new(:acceptance, :os, :destroy, :provision) do |t, task_args|
+  Rake::Task[:spec_prep].invoke
+  task_args.with_defaults(:os => "default", :destroy => "onpass", :provision => "yes")
   os = task_args[:os]
 
   case os
@@ -63,8 +65,12 @@ RSpec::Core::RakeTask.new(:acceptance, :os) do |t, task_args|
   else
     puts "Using the default nodeset"
   end
-  ENV['BEAKER_destroy']='onpass'
+  ENV['BEAKER_destroy']=task_args[:destroy]
+  ENV['BEAKER_provision']=task_args[:provision]
   t.pattern = 'spec/acceptance'
+end
+Rake::Task[:acceptance].enhance do
+  Rake::Task[:spec_clean].invoke
 end
 
 desc 'Populate CONTRIBUTORS file'
