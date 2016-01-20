@@ -19,6 +19,8 @@ class <%= metadata['name'] %> (
 
   class { '::<%= metadata['name'] %>::install': } ->
   class { '::<%= metadata['name'] %>::config': } ~>
-  class { '::<%= metadata['name'] %>::service': } ->
-  Class['::<%= metadata['name'] %>']
+  class { '::<%= metadata['name'] %>::service': }
+
+  contain '::<%= metadata['name'] %>::install'
+  contain '::<%= metadata['name'] %>::config'
 }
