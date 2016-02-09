@@ -5,12 +5,7 @@
   "summary": "Summary here",
   "license": "Apache-2.0",
   "source": "",
-  "dependencies": [
-    {
-      "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
-    }
-  ],
+  "dependencies": [],
   "operatingsystem_support": [
     {
       "operatingsystem": "Ubuntu",

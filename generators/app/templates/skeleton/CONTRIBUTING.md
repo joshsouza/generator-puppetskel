@@ -7,7 +7,7 @@ will likely make it into a release a little quicker.
 
 1. Fork the repo.
 
-2. Run the tests. We only take pull requests with passing tests, and
+2. Run the tests (unit and acceptance). We only take pull requests with passing tests, and
    it's great to know that you have a clean slate.
 
 3. Add a test for your change. Only refactoring and documentation
@@ -78,6 +78,22 @@ simple tests against it after applying the module. You can run our
 Beaker tests with:
 
     bundle exec rake acceptance
+
+We have added some ease-of-use logic to test multiple OS'es:
+
+    bundle exec rake acceptance[<OS>,<destroy_on_finish>,<create_new_machine (vs resuse)]
+    # it defaults to:
+    [centos6,yes,yes]
+
+    # This will run tests against centos, creating a new box, and keeping it up after
+    bundle exec rake acceptance[centos6,no,yes]
+
+    # This will run tests against an existing centos box, destroying it only if it passes
+    bundle exec rake acceptance[centos6,onpass,no]
+
+    # This will run tests against ubuntu 12, destroying it only if it passes
+    bundle exec rake acceptance[ubuntu12,onpass]
+
 
 This will use the host described in `spec/acceptance/nodeset/default.yml`
 by default. To run against another host, set the `BEAKER_set` environment

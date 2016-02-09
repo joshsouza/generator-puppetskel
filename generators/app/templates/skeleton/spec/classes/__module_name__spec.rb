@@ -21,7 +21,7 @@ describe '<%= metadata['name'] %>' do
           facts
         end
 
-        context '<%= metadata['name'] %> class without any parameters' do
+        context 'without any parameters' do
           it { is_expected.to compile.with_all_deps }
 
           it { is_expected.to contain_class('<%= metadata['name'] %>::params') }
@@ -37,7 +37,7 @@ describe '<%= metadata['name'] %>' do
   end
 
   context 'unsupported operating system' do
-    describe '<%= metadata['name'] %> class without any parameters on Solaris/Nexenta' do
+    describe 'without any parameters on Solaris/Nexenta' do
       let(:facts) do
         {
           :osfamily        => 'Solaris',
