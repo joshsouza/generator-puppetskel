@@ -1,6 +1,6 @@
 {
   "name": "generator-puppetskel",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Lays down a customized puppet testbed based on the puppet skeleton",
   "homepage": "",
   "author": {
