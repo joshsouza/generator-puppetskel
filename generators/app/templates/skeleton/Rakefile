@@ -55,16 +55,24 @@ RSpec::Core::RakeTask.new(:acceptance, :os, :destroy, :provision) do |t, task_ar
   os = task_args[:os]
 
   case os
+  when 'centos5'
+    ENV['BEAKER_set']='centos-511-x64'
   when 'centos6'
     ENV['BEAKER_set']='centos-66-x64'
   when 'centos7'
     ENV['BEAKER_set']='centos-7-x64'
   when "debian"
     ENV['BEAKER_set']='debian-78-x64'
+  when "debian7"
+    ENV['BEAKER_set']='debian-78-x64'
+  when "debian6"
+    ENV['BEAKER_set']='debian-609-x64'
   when "ubuntu12"
     ENV['BEAKER_set']='ubuntu-1204-x64'
   when "ubuntu14"
     ENV['BEAKER_set']='ubuntu-1404-x64'
+  when "fedora"
+    ENV['BEAKER_set']='fedora-20-x64'
   when "windows2012"
     ENV['BEAKER_set']='windows-server-2012r2'
   else

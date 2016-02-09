@@ -6,7 +6,6 @@ HOSTS:
     box: chef/fedora-20
     box_url: https://vagrantcloud.com/chef/boxes/fedora-20
     hypervisor: vagrant
-
 CONFIG:
   log_level: verbose
   type: foss
