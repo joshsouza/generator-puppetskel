@@ -1,0 +1,8 @@
+---
+:backends: yaml
+:yaml:
+  :datadir: ./tests/hieradata
+:hierarchy:
+  - "%{::hostname}"
+  - common
+:logger: console

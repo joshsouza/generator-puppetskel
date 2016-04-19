@@ -32,6 +32,9 @@ Acceptance on an OS:
 bundle exec rake acceptance[centos6]
 ```
 
+## Warnings
+
+I apologize if everything in this doesn't work out of the box. I work on a lot of projects, and don't get to keep everything up to date all the time. If it's not working quite right, feel free to reach out.
 
 ## Getting To Know Yeoman
 
@@ -39,7 +42,7 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
 
 ## License
 
- © [Josh Souza](development@pureinsomnia.com)
+ © [Josh Souza](development@codethat.rocks)
 
 
 [npm-image]: https://badge.fury.io/js/generator-puppetskel.svg
