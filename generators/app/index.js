@@ -47,6 +47,12 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Do you want to put the files in a subdirectory named after this module?',
       default: true
     },{
+      type: 'list',
+      name: 'puppetVersion',
+      message: 'Which version of the testbed would you like (Puppet version)?',
+      choices: ['4.x','3.x'],
+      default: 3
+    },{
       type: 'input',
       name: 'userName',
       message: 'What is your name?',
@@ -61,7 +67,6 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       this.props = props;
       // To access props later use this.props.someOption;
-
       done();
     }.bind(this));
   },
@@ -85,13 +90,17 @@ module.exports = yeoman.generators.Base.extend({
       }
     }
     this._processDirectory('skeleton',dir,context);
+    // Anything unique to versions must be broken down into their respective dirs
+    // Tried doing a default first then applying version changes, but that prompts for file updates
+    // Won't auto-force, due to the possibility of overwriting user changes on second run
+    this._processDirectory(this.props.puppetVersion,dir,context);
   },
   _processDirectory: function(source, destination, context){
     var root = path.join(this.sourceRoot(),source);
     var me = this;
     // This block allows for _wrapped_ variables from context to be replaced in diretory names
     var subs = [];
-    for(var index in context) { 
+    for(var index in context) {
        if (context.hasOwnProperty(index) &&
             typeof(context[index])=='string'
        ) {

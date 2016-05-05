@@ -1,0 +1,39 @@
+source 'https://rubygems.org'
+ruby "2.2.3"
+group :test do
+  gem 'rake'
+  gem 'puppet', ENV['PUPPET_GEM_VERSION'] || '~> 4.4.2'
+  gem 'rspec', '>= 3.4'
+  gem 'rspec-puppet', :git => 'https://github.com/rodjek/rspec-puppet.git'
+  gem 'puppetlabs_spec_helper'
+  gem 'metadata-json-lint'
+  gem 'rspec-puppet-facts'
+  gem 'rubocop', '0.33.0'
+  gem 'simplecov', '>= 0.11.0'
+  gem 'simplecov-console'
+  gem 'hiera-puppet-helper'
+
+  gem 'puppet-lint-absolute_classname-check'
+  gem 'puppet-lint-leading_zero-check'
+  gem 'puppet-lint-trailing_comma-check'
+  gem 'puppet-lint-version_comparison-check'
+  gem 'puppet-lint-classes_and_types_beginning_with_digits-check'
+  gem 'puppet-lint-unquoted_string-check'
+end
+
+group :development do
+  gem 'travis'
+  gem 'travis-lint'
+  gem 'puppet-blacksmith'
+  gem 'guard-rake'
+end
+
+group :system_tests do
+  gem 'beaker' # , :git => 'https://github.com/petems/beaker-windows.git'
+  # This shouldn't be necessary anymore, and was causing issues, but you might need to swap
+  # back for windows compatibility
+  gem 'beaker-rspec' #, :git => 'https://github.com/joshsouza/beaker-rspec'
+  gem 'beaker-puppet_install_helper'
+  gem 'vagrant-wrapper' # May not be needed?
+  gem 'winrm'
+end
